@@ -6,20 +6,24 @@ Partie 1 - Question 1 et 2:
 
 
 Partie 1 - Question 3:
-    J'ai ajouté une github actions dans .github/workflows/ci_cd.yaml. Celle-ci fait
+    J'ai ajouté une github actions dans .github/workflows/ci_cd.yaml. 
+    Celle-ci crée automatiquement l'image docker pour hands_on_microphone lorsqu'un push est réalisé.
 
 Partie 1 - Question 4:
-    L'utilisation de ngx est intéressante si on travaille sur des machines distantes et si on a un certain nombres de dockers qui doivent communiquer ensemble. Ici on considère trois dockers simples, je n'utilise pas ngx car son utilisation n'a pas de grande valeur ajoutée.
+    L'utilisation de ngx est intéressante si on travaille sur des machines distantes et si on a un certain nombres de dockers qui doivent communiquer ensemble.
+    Ici on considère trois dockers simples, je n'utilise pas ngx car son utilisation n'a pas de grande valeur ajoutée.
 
 Partie 1 - Question 5: 
-    L'utilisation de kubernetes est intéressante pour orchestrer un grand nombre de dockers. Kubernetes est ytile pour ajouter des dockers facilement. Il facilite aussi la communication des dockers. Ici on considère trois dockers simples, je n'utilise pas kubernetes car cela n'est pas adapté à mes besoins. 
+    L'utilisation de kubernetes est intéressante pour orchestrer un grand nombre de dockers. Kubernetes est ytile pour ajouter des dockers facilement. 
+    Il facilite aussi la communication des dockers. Ici on considère trois dockers simples, je n'utilise pas kubernetes car cela n'est pas adapté à mes besoins. 
 
 Partie 2:
     Le code est disponible dans le répertoire partie_deux. J'ai implémenté deux api pour gérer les droits d'accès d'une base de données pour deux utilisateurs: user et admin.
     User est seulement capable de récupérer des informations depuis la bd mongo via la route /get/{id}.
     Admin est capable de récupérer, de modifier et d'insérer des informations dans la base mongi via les routes: /get/{id}, /update/{id}/{value} et /insert/{id}/{value}.
     J'ai dockerisé la base mongo et les deux api.
-    J'aurais pu n'implémenter qu'une api en ajoutant l'utilisation d'un token d'authentification pour gérer les droits d'accès aux routes de mises à jour et d'insertion. Je ne l'ai pas fait car je voulais aller au plus simple et me concentrer sur la prise en main de l'outil docker.
+    J'aurais pu n'implémenter qu'une api en ajoutant l'utilisation d'un token d'authentification pour gérer les droits d'accès aux routes de mises à jour et d'insertion.
+    Je ne l'ai pas fait car je voulais aller au plus simple et me concentrer sur la prise en main de l'outil docker.
     Un notebook est disponible dans le répertoire partie_deux pour tester les accès à la base mongo après avoir dockerisé la structure via docker compose.
 
 
