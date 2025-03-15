@@ -1,15 +1,27 @@
 services:
+  mongo_db_mlops:
+    image: mongo_db_cc
+    container_name: mongo_db_cc
+    build: ./mongo_db_cc
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo_db_cc/init.js:/docker-entrypoint-initdb.d/init.js:ro
+      
   service_b:
     build:
       context: ./service_b
     volumes:
-      - /tmp:/tmp  # Share /tmp for the Unix Domain Socket
+      - ./sockets:/tmp  # Share /tmp for the Unix Domain Socket
     restart: always
+    depends_on:
+      - mongo_db_mlops
+      
   service_a:
     build:
       context: ./service_a
     volumes:
-      - /tmp:/tmp  # Share /tmp for the Unix Domain Socket
+      - ./sockets:/tmp  # Share /tmp for the Unix Domain Socket
     ports:
       - "8000:8000"  # Expose service_a's port to access it from outside
     depends_on:

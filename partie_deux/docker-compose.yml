@@ -1,0 +1,29 @@
+services:
+  mongo_cc_mlops:
+    image: mongo_cc
+    container_name: mongo_cc
+    build: ./mongo_cc
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo_cc/init.js:/docker-entrypoint-initdb.d/init.js:ro
+
+  api_user:
+    build:
+      context: .
+      dockerfile: service_user/Dockerfile
+    container_name: api_user
+    ports:
+      - "8001:8001"
+    depends_on:
+      - mongo_cc_mlops
+
+  api_admin:
+    build:
+      context: .
+      dockerfile: service_admin/Dockerfile
+    container_name: api_admin
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongo_cc_mlops
